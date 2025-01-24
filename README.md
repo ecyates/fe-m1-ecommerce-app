@@ -1,53 +1,159 @@
 # Advanced React E-Commerce Web App
-Author: Elizabeth Yates
+**Author**: Elizabeth Yates
 
-## Project Requirements
-To successfully build our advanced e-commerce application and achieve the learning objectives, we need to establish clear project requirements. These requirements outline the key features and functionalities that our application must encompass. Below, you'll find a comprehensive list of project requirements based on our learning objectives:
+---
 
-### 💡 Note:
-Our project leverages the FakeStoreAPI to simulate asynchronous data fetching. This API, available at https://fakestoreapi.com/, provides a simulated environment for fetching product/category data. By utilizing this mock API, we can demonstrate the capabilities of the advanced topics reviewed within our Module’s Lessons.
+## Project Overview
 
-While both Context API and Redux Toolkit are valuable tools for state management, we'll focus on Redux for this project to deepen understanding and practice with Redux concepts.
+The **Advanced React E-Commerce Web App** is an application that simulates an online shopping experience. This project is designed to deepen understanding of advanced React concepts, state management with Redux Toolkit, and data fetching using React Query. The app integrates the FakeStoreAPI (https://fakestoreapi.com/) for asynchronous data fetching and showcases functionalities such as product listing, category navigation, product details, authentication with Auth0, shopping cart management, and simulated checkout.
 
-Additionally, we'll encourage the use of React Query for data fetching due to its simplicity and efficiency, while still allowing flexibility for the use of Redux Toolkit for state management.
+---
 
-### Product Catalog:
+## Features
 
-#### Product Listing and Display:
-- Use React Query to retrieve all of the products in the store and display them on the Home component. 
-- Show the title, price, category, description, rate, and image.
-- Each product should have a button that will allow the user to add it to the shopping cart
+### Product Catalog
 
-#### Category Navigation:
-- Provide a select drop down that allows users to select a product category
-- **NOTE**: FakeStoreAPI has an endpoint that will give you an array of all the product categories. Use React Query to request that endpoint to populate your select dropdown.  
-- The dropdown should not be hard coded, it should dynamically pull the values from the API
-- When the user selects a different category from the dropdown, only display the products from that category.
-- **NOTE**: The FakeStoreAPI has an endpoint that allows you to get products of a specific category.  Make sure to use React Query to make the request to this endpoint.  
+1. **Product Listing and Display**
 
-### Shopping Cart:
+- Retrieves all products from FakeStoreAPI using React Query.
+- Displays product details, including title, price, category, and image.
+- Each product includes "Add to Cart" and "View Description" buttons.
 
-#### State Management with Redux Toolkit:
-- Utilize Redux Toolkit for managing the shopping cart state, including adding, updating, and removing products from the cart.
-- Define reducers and actions to handle cart-related state changes and interactions with the FakeStoreAPI.
+2. **Category Navigation**
 
-#### Shopping Cart Component:
-- Create a Shopping Cart component where users can view and manage the products within their cart.
-- Display a list of products currently added to the cart including the title, image, count, and price of each product.
-- Each product should have a button that removes the item from the cart
-- **REMEMBER**: Users should be able to add products to the shopping cart directly from the home product listing page.
+- Dynamically populates a category dropdown using the FakeStoreAPI categories endpoint.
+- Filter displays products by selected category.
 
-#### Session Storage for Shopping Cart:
-- Store, retrieve, and update the shopping cart data in sessionStorage to ensure persistence across different components and browser sessions.
-- Store the shopping cart as an array of product objects
+3. **Product Details**
 
-#### Total Amount and Price Calculation:
-- In the shopping cart component, display the total number of products in the cart
-- Display the total price of all the products in the cart.
-- Update these values dynamically as users modify the contents of their cart, ensuring accuracy and real-time feedback.
+- Allows users to click on a product to view detailed information.
+- Displays product-specific details, including a larger image, full description, category, and price.
+- Includes a button to add the product to the cart from the details page and a button to keep shopping.
 
-#### Checkout Functionality:
-- Implement a checkout feature allowing users to complete their purchases.
-- FakeStoreAPI does not have a way to process orders so this feature should simulate a checkout by clearing the Redux state and sessionStorage
-- Provide visual feedback to users upon successful checkout, indicating that their cart has been cleared.
+### Shopping Cart
 
+1. **State Management**
+
+- Uses Redux Toolkit to manage shopping cart state (add items, remove items, and checkout).
+- Defines reducers and actions for seamless cart interactions.
+
+2. **Shopping Cart Component**
+
+- Displays all products added to the cart with details (title, image, quantity, and price).
+- Provides buttons to increase and decrease the quantity. When the quantity reaches 0, the item is removed. 
+
+3. **Session Storage Persistence**
+
+- Saves cart data in `sessionStorage` for continuity across sessions.
+- When the user is logged out, the cart is automatically removed from `sessionStorage`.
+
+4. **Dynamic Price Calculation**
+
+- Shows total number of products and total price in the cart.
+- Dynamically updates totals as cart contents change.
+
+5. **Checkout Functionality**
+
+- Simulates a checkout process by clearing Redux state and `sessionStorage`.
+- Provides user feedback upon successful checkout.
+
+### Authentication
+
+1. **Auth0 Integration**
+
+- Enables secure user authentication using Auth0.
+- Provides personalized user experiences based on login status.
+- Displays a welcome message with the user's name and the user's profile image in the navbar upon successful login.
+
+---
+
+## Technologies Used
+
+### Front-End
+
+- **React.js**: Component-based library for building the user interface.
+- **React Query**: For efficient and simple data fetching.
+- **Redux Toolkit**: For state management, specifically shopping cart functionality.
+- **React Router**: For navigation between pages.
+- **Bootstrap**: For styling and responsive design.
+
+### Authentication
+
+- **Auth0**: For secure user login and personalized user experience.
+
+### API
+
+- **FakeStoreAPI**: A mock API providing product and category data.
+
+### Storage
+
+- **Session Storage**: For persisting cart data across browser sessions.
+
+---
+
+## Installation and Setup
+
+1. Clone the repository:
+
+        git clone https://github.com/ecyates/fe-m1-ecommerce-app.git
+
+2. Navigate to the project directory:
+
+        cd m1-ecommerce-app
+
+3. Install dependencies:
+
+        npm install
+
+4. Set up Auth0 configuration:
+
+        // Auth0Provider.tsx
+        const domain = <your-domain-name>;
+        const clientId = <your-client-id>;
+
+4. Start the development server:
+
+        npm run dev
+
+5. Open the application in your browser at `http://localhost:5173/`.
+
+---
+
+## Usage
+
+1. **Log In**: Authenticate using Auth0 to personalize your shopping experience.
+2. **View Products:** Browse the product catalog from the homepage.
+3. **Filter by Category:** Select a category from the dropdown to filter products.
+4. **Add to Cart:** Add desired products to the cart from the product catalog.
+5. **View Cart:** Manage cart contents, view total items, and calculate the total price.
+6. **Checkout:** Simulate checkout to clear cart contents and reset the session.
+7. **View Product Details:** Click on a product to see detailed information and add it to the cart.
+
+
+---
+
+## Learning Objectives
+
+1. Practice advanced state management using Redux Toolkit.
+2. Implement dynamic data fetching with React Query.
+3. Design a responsive and engaging user interface using React and Bootstrap.
+4. Ensure persistence using sessionStorage.
+5. Apply React Router for seamless navigation between application pages.
+6. Secure user authentication and personalized experiences using Auth0.
+
+---
+
+## Future Enhancements
+
+1. Enhance the checkout process with payment simulation.
+2. Improve product filtering with search and sort functionality.
+3. Add ratings and reviews for products.
+4. Implement dark mode for improved user experience.
+
+---
+
+## Acknowledgments
+
+- FakeStoreAPI (https://fakestoreapi.com/) for providing mock data.
+- Unsplash (https://unsplash.com/photos/red-blue-and-yellow-abstract-painting--MCrF6hnojU) for the background image.
+- Coding Temple for guiding the project development process.
